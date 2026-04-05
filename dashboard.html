@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Soft Stacks</title>
+
+    <link rel="stylesheet" href="dash-style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script>
+    if (sessionStorage.getItem('isAdmin') !== 'true') {
+        window.location.href = "index.html"; 
+    }
+</script>
+</head>
+
+<body>
+
+
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+
+            <div class="brand">Soft <span>Stacks</span></div>
+
+            <nav>
+
+                <a href="#overview" class="active">📊 Overview</a>
+
+                <a href="#courses">📚 Manage Courses</a>
+
+                <a href="#student-section">👨‍🎓 Students</a>
+
+                <a href="#teacher-section">👨‍🏫 Mentors</a>
+
+                <a href="index.html" class="logout">🚪 Logout</a>
+
+            </nav>
+
+        </aside>
+
+
+
+        <main class="main-content">
+
+            <header class="main-header">
+
+                <h1>Welcome back, Admin</h1>
+
+                <button class="add-btn" onclick="openCourseModal()">+ Add New Course</button>
+                 <button class="add-btn" onclick="openTeacherModal()">+ Add New Mentor</button>
+                  <button class="add-btn" onclick="openStudentModal()">+ Enroll Student</button>
+                
+
+
+
+            </header>
+
+
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <h3>Total Students</h3>
+
+                    <p class="number">0</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>Active Courses</h3>
+
+                    <p class="number">0</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>New Inquiries</h3>
+
+                    <p id="inquiry-count" class="number">0</p>
+
+                </div>
+
+            </section>
+
+
+</section>
+
+<section id="inquiry-section" class="table-container" style="margin-bottom: 40px; border-top: 3px solid #2563eb;">
+    <div class="section-header">
+        <h2>New <span class="highlight">Inquiries</span></h2>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="inquiryBody">
+            </tbody>
+    </table>
+</section>
+            <section id="teacher-section" class="dash-section">
+
+                <section id="teacher-section" class="dash-section">
+
+                    <div class="section-header">
+
+                        <h2>Mentor <span class="highlight">Directory</span></h2>
+
+                        <button class="add-btn" onclick="openTeacherModal()">+ Add New Mentor</button>
+
+                    </div>
+
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Full Name</th>
+
+                                    <th>Specialization</th>
+                                    <th>Experience</th>
+
+                                    <th>Status</th>
+
+                                    <th>Actions</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="teacherBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+
+                <div id="teacherModal" class="modal-overlay">
+
+                    <div class="modal-box">
+
+                        <h3>Add Faculty Member</h3>
+
+                        <form id="addTeacherForm">
+
+                            <div class="form-group">
+
+                                <label>Full Name</label>
+
+                                <input type="text" id="teacherName" required placeholder="e.g. Rageena Wahab">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Years of Experience</label>
+
+                                <input type="number" id="teacherExp" required>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Specialization (Select Multiple)</label>
+
+                                <div class="subject-tags">
+
+                                    <label><input type="checkbox" name="sub" value="MERN Stack"> MERN</label>
+
+                                    <label><input type="checkbox" name="sub" value="Python"> Python</label>
+
+                                    <label><input type="checkbox" name="sub" value="UI/UX"> UI/UX</label>
+
+                                    <label><input type="checkbox" name="sub" value="Data Science"> Data Science</label>
+
+                                </div>
+
+                            </div>
+
+                            <div class="modal-actions">
+
+                                <button type="button" onclick="closeTeacherModal()" class="cancel-btn">Cancel</button>
+
+                                <button type="submit" class="save-btn">Save Mentor</button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <section id="student-section" class="dash-section">
+
+                    <div class="section-header">
+
+                        <h2>Student <span class="highlight">Enrollment</span></h2>
+
+                        <button class="add-btn" onclick="openStudentModal()">+ Enroll Student</button>
+
+                    </div>
+
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Student Name</th>
+
+                                    <th>Course</th>
+
+                                    <th>Email</th>
+
+                                    <th>Date Joined</th>
+
+
+
+                                    <th>Actions</th>
+
+
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="studentBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+
+                <div id="studentModal" class="modal-overlay">
+
+                    <div class="modal-box">
+
+                        <h3>Enroll New Student</h3>
+
+                        <form id="enrollStudentForm">
+
+                            <input type="text" id="sName" placeholder="Full Name" required>
+
+                            <input type="email" id="sEmail" placeholder="Email Address" required>
+
+                            <input type="text" id="sPhone" placeholder="Phone Number" required>
+
+                            <select id="sCourse">
+
+                                <option value="MERN Stack">MERN Stack</option>
+
+                                <option value="Python">Python Fullstack</option>
+
+                                <option value="UI/UX">UI/UX Design</option>
+
+                            </select>
+
+                            <div class="modal-actions">
+
+                                <button type="button" onclick="closeStudentModal()">Cancel</button>
+
+                                <button type="submit" class="save-btn">Enroll Now</button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <section id="courses" class="courses-section">
+
+                    <div class="container">
+
+                        <h2>Our Popular <span class="highlight">Courses</span></h2>
+
+                        <div id="courseGrid" class="course-grid">
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+        </main>
+
+    </div>
+
+    <div id="successToast" class="toast-notification">
+
+        <div class="toast-content">
+
+            <span class="icon">✅</span>
+
+            <div class="message">
+
+                <h4 id="toastTitle">Success!</h4>
+
+                <p id="toastMessage">Data has been saved to Atlas.</p>
+
+            </div>
+
+        </div>
+
+        <div class="progress-bar"></div>
+
+    </div>
+
+
+
+    <div id="courseModal" class="modal-overlay">
+
+        <div class="modal-box">
+
+            <h3>Create New Course</h3>
+
+            <form id="addCourseForm">
+
+                <div class="form-group">
+
+                    <label>Course Name</label>
+
+                    <input type="text" id="cName" required placeholder="e.g. Full Stack Development">
+
+                </div>
+
+                <div class="form-group" style="display: flex; gap: 10px;">
+
+                    <div style="flex: 1;">
+
+                        <label>Duration</label>
+
+                        <input type="text" id="cDuration" required placeholder="e.g. 3 Months">
+
+                    </div>
+
+                    <div style="flex: 1;">
+
+                        <label>Course Fees (₹)</label>
+
+                        <input type="number" id="cFees" required placeholder="5000">
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Status</label>
+
+                    <select id="cStatus">
+
+                        <option value="Active">Active</option>
+
+                        <option value="Upcoming">Upcoming</option>
+
+                        <option value="Closed">Closed</option>
+
+                    </select>
+
+                </div>
+
+                <div class="modal-actions">
+
+                    <button type="button" onclick="closeCourseModal()" class="cancel-btn">Cancel</button>
+
+                    <button type="submit" class="save-btn">Publish Course</button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+<script>
+// 2. Connect to the Backend
+const socket = io();    
+
+// 3. Ask for Permission immediately when you open the dashboard
+if (Notification.permission !== "granted") {
+    Notification.requestPermission();
+}
+
+// 4. Listen for the 'new_student_lead' event
+socket.on('new_student_lead', (data) => {
+    
+    // Play a sound so you hear it even if your back is turned
+    let audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+    audio.play();
+
+    // Show the Native Browser Notification
+    if (Notification.permission === "granted") {
+        new Notification("🚀 Soft Stacks: New Lead!", {
+            body: `${data.name} is asking about a course. Check the table!`,
+            icon: "https://your-logo-url.com/logo.png"
+        });
+    }
+
+    // Refresh your table automatically (if you have a refresh function)
+    if (window.loadInquiries) loadInquiries();
+});
+</script>
+
+</body>
+
+</html>

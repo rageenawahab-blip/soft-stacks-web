@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft Stacks | Software Coaching Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+   <nav class="navbar">
+    <div class="logo">Soft <span>Stack</span></div>
+    
+    <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="admin-login.html" class="admin-btn">Admin Login</a></li>
+    </ul>
+</nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Master the Art of <br><span class="highlight">Software Engineering</span></h1>
+            <p>From Syntax to Deployment. Join our job-oriented coaching for 2026.</p>
+            <div class="hero-btns">
+                <a href="#courses" class="btn-primary">View Courses</a>
+                <a href="#" class="btn-secondary">Download Syllabus</a>
+            </div>
+        </div>
+
+    </header>
+    <section id="about" class="about-video">
+        <div class="container">
+            <div class="video-text">
+                <h2>Experience the <span class="highlight">Soft Stacks</span> Method</h2>
+                <p>Our classrooms are designed for collaboration. Watch this short clip to see how our mentors guide
+                    students through complex real-world projects.</p>
+                <ul class="features-list">
+                    <li>✅ 1-on-1 Mentorship</li>
+                    <li>✅ Industry-Standard Curriculum</li>
+                    <li>✅ Modern Lab Infrastructure</li>
+                </ul>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Soft Stacks Intro" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+          
+                </iframe>
+
+            </div>
+        </div>
+    </section>
+    <section class="gallery-slider">
+        <div class="gallery-header">
+            <h2>Life at <span class="highlight">Soft Stacks</span></h2>
+            <div class="gallery-nav">
+                <button id="galPrev" class="nav-btn">❮</button>
+                <button id="galNext" class="nav-btn">❯</button>
+            </div>
+        </div>
+
+        <div class="gallery-viewport">
+            <div class="gallery-track" id="galleryTrack">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600" alt="Coding Lab">
+                    <div class="overlay"><span>Tech Lab</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600"
+                        alt="Student Group">
+                    <div class="overlay"><span>Study Groups</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600" alt="Seminar">
+                    <div class="overlay"><span>Guest Lectures</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600" alt="Graduation">
+                    <div class="overlay"><span>Success Stories</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="courses">
+    <div class="container">
+        <h2>Our Featured <span class="highlight">Programs</span></h2>
+        <div id="dynamicCourseGrid" class="course-grid">
+            <p style="text-align: center; color: #64748b;">Loading latest courses...</p>
+        </div>
+    </div>
+</section>
+    <section id="contact" class="contact-section">
+         <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get in <span class="highlight">Touch</span></h2>
+            <p>Our mentors usually respond within 2 hours.</p>
+            <ul class="contact-details">
+                <li>📍 Chennai, TN</li>
+                <li>📞 +91 98765 43210</li>
+            </ul>
+        </div>
+
+        <div class="contact-card">
+            <form id="homeInquiryForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="userName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="userEmail" placeholder="Your Email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Inquiry Message</label>
+                    <textarea id="userMessage" rows="3" placeholder="Tell us what you're looking for..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Submit Inquiry</button>
+            </form>
+        </div>
+
+    </div>
+</section>
+    <section class="testimonials">
+        <h2>What Our <span class="highlight">Alumni</span> Say</h2>
+
+        <div class="testimonial-container">
+            <div class="testimonial-slide active">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200" alt="Student 1"
+                    class="student-photo">
+                <p class="quote">"Soft Stacks changed my career. I went from knowing zero code to landing a MERN Stack
+                    developer role in just 4 months!"</p>
+                <h4 class="student-name">Arjun V.</h4>
+                <span class="student-role">Placed at TechCorp</span>
+            </div>
+
+            <div class="testimonial-slide">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200" alt="Student 2"
+                    class="student-photo">
+                <p class="quote">"The mentorship here is unmatched. They don't just teach syntax; they teach you how to
+                    think like a software engineer."</p>
+                <h4 class="student-name">Priya S.</h4>
+                <span class="student-role">Junior Web Developer</span>
+            </div>
+        </div>
+
+        <div class="testimonial-dots">
+            <span class="t-dot active" onclick="showTestimonial(0)"></span>
+            <span class="t-dot" onclick="showTestimonial(1)"></span>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <div class="logo">Soft <span>Stacks</span></div>
+            <p class="footer-desc">
+                Empowering the next generation of software engineers in Chennai. 
+                Expert-led coaching in MERN, Python, and UI/UX Design.
+            </p>
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact Us</h4>
+            <ul class="contact-info">
+                <li>📍 Palakkad & Chennai Offices</li>
+                <li>📞 +91 98765 43210</li>
+                <li>✉️ info@softstacks.com</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Soft Stacks Academy. All Rights Reserved.</p>
+    </div>
+</footer>
+<button id="backToTop" class="back-to-top" title="Go to top">
+    <span class="arrow">↑</span>
+</button>
+    <script src="script.js"></script>
+</body>
+
+</html>
