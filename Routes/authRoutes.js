@@ -11,7 +11,16 @@ router.post('/login', async (req, res) => {
     console.log("Email Received:", req.body.email);
     const { email, password } = req.body;
     console.log("1. Login Attempt for:", email); // Check if email is arriving
-
+    // TEMPORARY ADMIN CREATION BYPASS
+  if (req.body.email === "rageenawahab@gmail.com" && req.body.password === "admin1234") {
+      const existingUser = await User.findOne({ email: req.body.email });
+      if (!existingUser) {
+          const hashedPassword = await bcrypt.hash("admin1234", 10);
+          await User.create({ email: req.body.email, password: hashedPassword });
+          console.log("⭐ Success: Generated matching admin account via code!");
+      }
+  }
+//end
     try {
    const user = await User.findOne({ email });
 if (!user) {
