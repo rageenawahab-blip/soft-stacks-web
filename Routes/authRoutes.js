@@ -11,18 +11,22 @@ router.post('/login', async (req, res) => {
     console.log("Email Received:", req.body.email);
     const { email, password } = req.body;
     console.log("1. Login Attempt for:", email); // Check if email is arriving
-    // TEMPORARY ADMIN CREATION BYPASS
-  if (req.body.email === "rageenawahab@gmail.com" && req.body.password === "admin1234") {
-      const existingUser = await User.findOne({ email: req.body.email });
-      if (!existingUser) {
-          const hashedPassword = await bcrypt.hash("admin1234", 10);
-          await User.create({ email: req.body.email, password: hashedPassword });
-          console.log("⭐ Success: Generated matching admin account via code!");
-      }
-  }
-//end
+ 
     try {
    const user = await User.findOne({ email });
+        try {
+        const user = await User.findOne({ email });
+
+        // 👇 ADD THIS TEMPORARY FORCE-HASH SNIPPET HERE 👇
+        if (email === "rageenawahab@gmail.com" && password === "admin1234" && user) {
+            const freshHash = await bcrypt.hash("admin1234", 10);
+            user.password = freshHash;
+            await user.save();
+            console.log("⭐ Force updated database with matching native hash!");
+        }
+        // 👆 END OF SNIPPET 👆
+
+        if (!user) {
 if (!user) {
     console.log("❌ DB says: No such email exists");
     return res.status(400).json({ message: "Invalid Email" });
