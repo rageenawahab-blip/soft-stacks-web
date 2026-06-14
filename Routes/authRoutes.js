@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
         }
         // 👆 END OF SNIPPET 👆
 
-        if (!user) {
+      
 if (!user) {
     console.log("❌ DB says: No such email exists");
     return res.status(400).json({ message: "Invalid Email" });
