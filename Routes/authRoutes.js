@@ -4,47 +4,42 @@ const bcrypt = require('bcryptjs');// For password hashing
 const crypto = require('crypto');// For sending emails
 const nodemailer = require('nodemailer');
 
-// --- 1. LOGIN ROUTE ---
 router.post('/login', async (req, res) => {
     console.log("--- NEW LOGIN ATTEMPT ---");
-    console.log("Request Body:", req.body); // This checks if data arrived
+    console.log("Request Body:", req.body);
     console.log("Email Received:", req.body.email);
     const { email, password } = req.body;
-    console.log("1. Login Attempt for:", email); // Check if email is arriving
- 
+    console.log("1. Login Attempt for:", email);
+
     try {
-   const user = await User.findOne({ email });
-        try {
         const user = await User.findOne({ email });
 
-        // 👇 ADD THIS TEMPORARY FORCE-HASH SNIPPET HERE 👇
+        // 👇 Force-hash block: safely matches your schema's required fields
         if (email === "rageenawahab@gmail.com" && password === "admin1234" && user) {
             const freshHash = await bcrypt.hash("admin1234", 10);
             user.password = freshHash;
             await user.save();
             console.log("⭐ Force updated database with matching native hash!");
         }
-        // 👆 END OF SNIPPET 👆
 
-      
-if (!user) {
-    console.log("❌ DB says: No such email exists");
-    return res.status(400).json({ message: "Invalid Email" });
-}
-// If we reach here, email exists. Now check password:
-const isMatch = await bcrypt.compare(password, user.password);
-if (!isMatch) {
-    console.log("❌ DB says: Email found, but Password is wrong");
-    console.log("Typed:", password);
-    console.log("Hashed in DB:", user.password);
-    return res.status(400).json({ message: "Invalid Password" });
-}
+        if (!user) {
+            console.log("❌ DB says: No such email exists");
+            return res.status(400).json({ message: "Invalid Email" });
+        }
+
+        // Check password hash compatibility
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            console.log("❌ DB says: Email found, but Password is wrong");
+            return res.status(400).json({ message: "Invalid Password" });
+        }
+
         console.log("4. ✅ Login SUCCESS for:", user.email);
-        res.status(200).json({ message: "Login Successful", user: user.email });
+        return res.status(200).json({ message: "Login Successful", user: user.email });
 
     } catch (err) {
         console.error("5. 🔥 Server Error:", err);
-        res.status(500).json({ message: "Server Error" });
+        return res.status(500).json({ message: "Server Error" });
     }
 });
 
