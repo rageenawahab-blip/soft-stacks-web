@@ -14,13 +14,7 @@ router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ email });
 
-        // 👇 Force-hash block: safely matches your schema's required fields
-        if (email === "rageenawahab@gmail.com" && password === "admin1234" && user) {
-            const freshHash = await bcrypt.hash("admin1234", 10);
-            user.password = freshHash;
-            await user.save();
-            console.log("⭐ Force updated database with matching native hash!");
-        }
+       
 
         if (!user) {
             console.log("❌ DB says: No such email exists");
